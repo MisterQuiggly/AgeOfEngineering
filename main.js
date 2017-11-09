@@ -1,14 +1,19 @@
 //variables
 var clicks = 0; //increment this by one every click
 var wood = 0; //increment this by one every click
+var stone = 0;
 var auto_clicks = 0; //automatically click once per second
+var auto_choppers = 0;
+var auto_miners = 0;
 var cost = 1; //the cost of this should increase exponentially
 var upgrade_speed = 0; //the level of the speed up upgrade
 var click_rate = 1000; //ms between each autoclick
+var chop_rate = 1000;
+var mine_rate = 1000;
 var interval_auto; //storing our interval here so we can update it
+var interval_auto2;
 var click_increment = 1; //how many clicks per click
 var wood_increment = 1;
-var stone = 0;
 var stone_increment =1;
 //functions
 
@@ -40,6 +45,19 @@ function buy_something(c, button) {
     return true;
 }
 
+function buy_something2(c, button) {
+    if (wood < c) {
+        button.className = 'btn btn-danger';
+        setTimeout(function() {
+            var e = document.getElementsByClassName("btn-danger")[0];
+            e.className = 'btn btn-success';
+        }, 1000);
+        return false;
+    }
+    wood -= c;
+    return true;
+}
+
 function update_workers() {
     var e2 = document.getElementById("time_period");
     e2.innerHTML = parseFloat(click_rate / 1000.0).toFixed(2);
@@ -48,6 +66,15 @@ function update_workers() {
         clicks += auto_clicks;
         update_total_clicks();
     }, click_rate);
+}
+function update_workers() {
+    var e2 = document.getElementById("time_period2");
+    e2.innerHTML = parseFloat(chop_rate / 1000.0).toFixed(2);
+    clearInterval(interval_auto2);
+    interval_auto2 = setInterval(function() {
+        wood += auto_choppers;
+        update_total_wood();
+    }, chop_rate);
 }
 //click events
 document.getElementById("click").onclick = function() {
@@ -66,7 +93,7 @@ document.getElementById("stone").onclick = function() {
 document.getElementById("buy_click").onclick = function() {
     if (!buy_something(cost, this)) return;
     auto_clicks++;
-    cost = Math.pow(1.25, auto_clicks).toFixed(0); //new cost
+    cost = Math.pow(1.2, auto_clicks).toFixed(0); //new cost
     update_total_clicks();
     var e = document.getElementById("clicks_per_second");
     e.innerHTML = auto_clicks;
@@ -74,6 +101,19 @@ document.getElementById("buy_click").onclick = function() {
     e2.innerHTML = 'Buy for $' + cost;
     var e2 = document.getElementById("autoclicker_level");
     e2.innerHTML = 'owned:  ' + auto_clicks;
+};
+
+document.getElementById("buy_chopper").onclick = function() {
+    if (!buy_something(cost, this)) return;
+    auto_choppers++;
+    cost = Math.pow(1.2, auto_choppers).toFixed(0); //new cost
+    update_total_wood();
+    var e = document.getElementById("wood_per_second");
+    e.innerHTML = auto_choppers;
+    var e2 = document.getElementById("buy_chopper");
+    e2.innerHTML = 'Buy for $' + cost;
+    var e2 = document.getElementById("autochopper_level");
+    e2.innerHTML = 'owned:  ' + auto_choppers;
 };
 //document.getElementById("upgrade_speed").onclick = function() {
     //var upgrade_cost = (Math.pow(3, upgrade_speed)) * 100;
