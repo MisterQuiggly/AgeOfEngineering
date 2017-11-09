@@ -1,0 +1,56 @@
+<html>
+<head>
+	<link rel="stylesheet" href="interface.css" type="text/css">
+	<title>Age of Engineering</title>
+</head>
+<body>
+<div class="container">
+<!--<h1>Age of Engineering</h1>-->
+        <div id="consoleDiv">
+
+            <p class="consoleOld"> 
+                <span style="color:black">&nbsp;.&nbsp;</span><span id="readout2"></span><br>
+            </p>
+            <p class="console"> 
+                <span>&nbsp;&gt;&nbsp;</span><span id="readout1">Welcome to Age of Engineering</span><span id="cursor" class="pulsate">|</span>
+            </p>
+            
+        </div><br/><br/>
+		 <p style="color:white">Spooky<span id="clips"></span></p>
+    <button id="click" type="button" class="button2">Make Money</button><br><br>
+	<button id="wood" type="button" class="button2">Chop Wood</button><br /><br>
+	<button id="stone" type="button" class="button2">Mine Stone</button><br /><br>
+	<b>Inventory</b>
+    <hr width="250" align="left">
+    <p>
+    Money: <span id="total_clicks">0</span><br />
+	Wood: <span id="total_wood">0</span><br />
+	Stone: <span id="total_stone">0</span><br />
+    </p>
+    <b>Buy</b>
+    <hr width="250" align="left">
+    <table class="table">
+        <tr>
+          <td>Banks</td>
+          <td><span id="autoclicker_level">owned: 0</span></td>
+          <td><button id="buy_click" type="button" class="btn btn-success">Buy for $1</button></td>
+        </tr>
+        <!--<tr>
+          <td>Speed up by 10%</td>
+          <td><span id="speed_level">lvl 0</span></td>
+          <td><button id="upgrade_speed" type="button" class="btn btn-success">Buy for 100</button></td>
+        </tr>
+        <tr>
+          <td>Increase Clicks Increment</td>
+          <td></td>
+          <td><button id="increase_clicks" type="button" class="btn btn-success">Buy for 100</button></td>
+        </tr>-->
+    </table><br>
+	<b>Manufacturing</b>
+    <hr width="250" align="left">
+	<p>Money per <small id="time_period">1.00</small> second: <span id="clicks_per_second">0</span></p>
+</div>
+	<script type="text/javascript" src="main.js"></script>
+	 <script src="jquery.js"></script>
+</body>
+</html>
